@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  node-server:
+    container_name: node-server
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "3031:3031"
+    environment:
+      WAIT_HOSTS: mongodb:27017
+      MONGODB_URI: mongodb://root:password@mongodb:27017/reserve
+      HOST: "0.0.0.0"
+      PORT: 3031
+
+  mongodb:
+    container_name: mongodb
+    restart: always
+    image: mongo:4.4.6
+    volumes:
+      - mongo:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "password"
+      MONGO_INITDB_DATABASE: "reserve"
+
+volumes:
+  mongo:

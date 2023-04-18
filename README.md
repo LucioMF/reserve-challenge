@@ -23,21 +23,26 @@ First we need to create the `db` directory where the database files will live in
 
 ## Run the Application
 The project is preconfigured with a simple development web server. The simplest way to start this server is:
-
+```
     npm start
+```
 
 ## Testing
 To run the application tests run:
-
+```
     npm run test
+```
 
 ## Alternative setup with Docker
-Alternatively you can install docker[https://www.docker.com/](https://www.docker.com/) with its docker-compose tool and use it to deploy both the database and the nodejs server
+Alternatively you can install docker [https://www.docker.com/](https://www.docker.com/) with its docker-compose tool and use it to deploy both the database and the nodejs server
 
 ### If you want to cheange either the PORT in wich will run the nodejs server or the database URI, create an .env file with the following environment variables
+```
 PORT=3030
 MONGODB_URI=mongodb://user:password@localhost:27017/reserve
+```
 ### To do the same for the docker setup you will have to change the environment and ports section on the "noder-server" service within the docker-compose.yml file
+```
 ..........
     ports:
       - "3031:3031"
@@ -47,6 +52,7 @@ MONGODB_URI=mongodb://user:password@localhost:27017/reserve
       HOST: "0.0.0.0"
       PORT: 3031
 ..........
+```
 
 ### Run the following command to create and run the application and database containers
 docker-compose up -d
